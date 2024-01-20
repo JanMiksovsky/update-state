@@ -1,7 +1,8 @@
 import updateState from "../src/updateState.js";
 import { message } from "./components.js";
 
-// The page state; initial all fields to null.
+// The page state, with all fields initialized to null. We set the real starting
+// state in the "load" event handler below.
 let state = {
   count: null,
 };
@@ -26,9 +27,9 @@ function setState(changes) {
 
 // Wait for the page and all its resources to load.
 window.addEventListener("load", async () => {
-  // Wire up event handlers for interactive elements. Once the page is loaded,
-  // we can access elements with `id` attributes directly as global variables.
-  // These event handlers only update state, not the page elements.
+  // Once the page is loaded we can access those elements with `id` attributes
+  // directly as global variables. Wire up event handlers for interactive
+  // elements. Event handlers only update state, not the page elements.
   buttonDecrement.addEventListener("click", () => {
     setState({
       count: state.count - 1,

@@ -9,7 +9,7 @@ let state = {
 };
 ```
 
-You can call updateState with the old state and desired changes to get back the new state and a dictionary of flags indicated what changed:
+You can call updateState with the old state and desired changes to get back the new state and a dictionary of flags indicating what changed:
 
 ```js
 const changes = { count: 1 };
