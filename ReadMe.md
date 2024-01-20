@@ -1,4 +1,4 @@
-This project shows a minimalist state engine for responding to user events and other changes in state.
+This project shows a minimalist state engine for responding to user events and other changes in state. For simple applications, this can provide most of the benefit of a complex reactive framework (e.g., React) in a tiny fraction of the conceptual and programmatic overhead.
 
 The page state is represented as a plain JavaScript object like so:
 
