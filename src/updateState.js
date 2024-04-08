@@ -42,7 +42,7 @@ function fieldsChanged(state, changes) {
 /**
  * Return true if the object is a plain JavaScript object.
  */
-export function isPlainObject(obj) {
+function isPlainObject(obj) {
   // From https://stackoverflow.com/q/51722354/76472
   if (typeof obj !== "object" || obj === null) {
     return false;
@@ -54,14 +54,14 @@ export function isPlainObject(obj) {
   return Object.getPrototypeOf(obj) === proto;
 }
 
-/**
- * Given a current state and changes to apply, apply the changes and return both
- * the new state and a dictionary of flags indicating which of the changes are
- * substantive.
- */
-export default function updateState(state, changes) {
-  const changed = fieldsChanged(state, changes);
-  const newState = Object.assign({}, state, changes);
-  Object.freeze(newState);
-  return { newState, changed };
+// Given a render function, return a setState function that applies changes to
+// the state and then calls the render function.
+export default function updateState(state, render) {
+  // This function is called by any event handler that wants to update the page.
+  // The event handlers never update the page elements directly.
+  return function setState(changes) {
+    const changed = fieldsChanged(state, changes);
+    Object.assign(state, changes);
+    render(changed);
+  };
 }
