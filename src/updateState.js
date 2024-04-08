@@ -61,6 +61,7 @@ export function isPlainObject(obj) {
  */
 export default function updateState(state, changes) {
   const changed = fieldsChanged(state, changes);
-  const newState = Object.assign(state, changes);
+  const newState = Object.assign({}, state, changes);
+  Object.freeze(newState);
   return { newState, changed };
 }
